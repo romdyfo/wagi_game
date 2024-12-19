@@ -11868,7 +11868,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.31764707, g: 0.31764707, b: 0.31764707, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -11918,7 +11918,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -32.19, y: 3.38, z: 1}
+  m_LocalPosition: {x: -5.1, y: 1.6, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -18062,7 +18062,7 @@ Transform:
   m_GameObject: {fileID: 829141081}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.868786, y: 6.182992, z: -1}
+  m_LocalPosition: {x: 6.868786, y: 6.182992, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -29385,6 +29385,7 @@ GameObject:
   - component: {fileID: 1383661665}
   - component: {fileID: 1383661664}
   - component: {fileID: 1383661666}
+  - component: {fileID: 1383661667}
   m_Layer: 0
   m_Name: school_tileset_32_6
   m_TagString: Untagged
@@ -29512,6 +29513,33 @@ PolygonCollider2D:
       - {x: 0.875, y: -0.6875}
       - {x: 0.875, y: 0.96875}
   m_UseDelaunayMesh: 0
+--- !u!50 &1383661667
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1383661663}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1384713140
 GameObject:
   m_ObjectHideFlags: 0
@@ -32868,7 +32896,7 @@ Transform:
   m_GameObject: {fileID: 1534200655}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.509998, y: 6.169998, z: -1}
+  m_LocalPosition: {x: 8.509998, y: 6.169998, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -37357,6 +37385,7 @@ GameObject:
   - component: {fileID: 1814129389}
   - component: {fileID: 1814129388}
   - component: {fileID: 1814129387}
+  - component: {fileID: 1814129392}
   m_Layer: 0
   m_Name: characters 1_10
   m_TagString: Untagged
@@ -37509,12 +37538,39 @@ Transform:
   m_GameObject: {fileID: 1814129386}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.048667073, y: 1.0366791, z: 0}
+  m_LocalPosition: {x: 0.048667073, y: 1.0366791, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &1814129392
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1814129386}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &1823494143
 GameObject:
   m_ObjectHideFlags: 0
@@ -41160,7 +41216,7 @@ Transform:
   m_GameObject: {fileID: 1997437540}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 22.89975, y: 3.6246777, z: 0}
+  m_LocalPosition: {x: 22.89975, y: 3.6246777, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
