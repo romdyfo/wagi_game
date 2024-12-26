@@ -539,9 +539,8 @@ GameObject:
   - component: {fileID: 974828311}
   - component: {fileID: 974828313}
   - component: {fileID: 974828312}
-  - component: {fileID: 974828314}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: NextText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -663,23 +662,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 974828310}
   m_CullTransparentMesh: 1
---- !u!114 &974828314
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 974828310}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55118b6420c15e84fbc11651bc69b732, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogueText: {fileID: 1063528920}
-  nextButton: {fileID: 356641405}
-  backgroundObject: {fileID: 1311987642}
-  squareObject: {fileID: 1199557893}
-  fadeController: {fileID: 765651125}
 --- !u!1 &1063528918
 GameObject:
   m_ObjectHideFlags: 0
@@ -831,6 +813,8 @@ MonoBehaviour:
   nextButton: {fileID: 356641405}
   backgroundObject: {fileID: 1311987642}
   squareObject: {fileID: 1199557893}
+  greenCharacter: {fileID: 1410171233}
+  pinkCharacter: {fileID: 1166654343}
   fadeController: {fileID: 765651125}
 --- !u!1 &1138423630
 GameObject:
@@ -917,7 +901,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1166654340}
   - component: {fileID: 1166654342}
-  - component: {fileID: 1166654341}
+  - component: {fileID: 1166654346}
+  - component: {fileID: 1166654343}
+  - component: {fileID: 1166654344}
   m_Layer: 5
   m_Name: player
   m_TagString: Untagged
@@ -944,7 +930,49 @@ RectTransform:
   m_AnchoredPosition: {x: -230, y: 0}
   m_SizeDelta: {x: 207.5325, y: 384}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1166654341
+--- !u!222 &1166654342
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1166654339}
+  m_CullTransparentMesh: 1
+--- !u!114 &1166654343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1166654339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a6a773d31fd65745b405674e9efed99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterImage: {fileID: 1166654346}
+  frontImage: {fileID: -1883123770, guid: a588c6a978cf115408ee38db7ee538bb, type: 3}
+  sideImage: {fileID: -750999063, guid: a588c6a978cf115408ee38db7ee538bb, type: 3}
+--- !u!114 &1166654344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1166654339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55118b6420c15e84fbc11651bc69b732, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueText: {fileID: 1063528920}
+  nextButton: {fileID: 356641405}
+  backgroundObject: {fileID: 1311987642}
+  squareObject: {fileID: 1199557893}
+  greenCharacter: {fileID: 1410171233}
+  pinkCharacter: {fileID: 1166654343}
+  fadeController: {fileID: 765651125}
+--- !u!114 &1166654346
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -974,14 +1002,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!222 &1166654342
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1166654339}
-  m_CullTransparentMesh: 1
 --- !u!1 &1199557893
 GameObject:
   m_ObjectHideFlags: 0
@@ -1143,6 +1163,8 @@ GameObject:
   - component: {fileID: 1410171230}
   - component: {fileID: 1410171232}
   - component: {fileID: 1410171231}
+  - component: {fileID: 1410171233}
+  - component: {fileID: 1410171234}
   m_Layer: 5
   m_Name: friend
   m_TagString: Untagged
@@ -1207,6 +1229,40 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1410171229}
   m_CullTransparentMesh: 1
+--- !u!114 &1410171233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1410171229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a6a773d31fd65745b405674e9efed99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterImage: {fileID: 1410171231}
+  frontImage: {fileID: -937361323, guid: a588c6a978cf115408ee38db7ee538bb, type: 3}
+  sideImage: {fileID: 1818240935, guid: a588c6a978cf115408ee38db7ee538bb, type: 3}
+--- !u!114 &1410171234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1410171229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55118b6420c15e84fbc11651bc69b732, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueText: {fileID: 1063528920}
+  nextButton: {fileID: 356641405}
+  backgroundObject: {fileID: 1311987642}
+  squareObject: {fileID: 1199557893}
+  greenCharacter: {fileID: 1410171233}
+  pinkCharacter: {fileID: 1166654343}
+  fadeController: {fileID: 765651125}
 --- !u!1 &1682218103
 GameObject:
   m_ObjectHideFlags: 0
@@ -1220,7 +1276,6 @@ GameObject:
   - component: {fileID: 1682218105}
   - component: {fileID: 1682218107}
   - component: {fileID: 1682218108}
-  - component: {fileID: 1682218109}
   - component: {fileID: 1682218110}
   m_Layer: 5
   m_Name: TypingText
@@ -1470,23 +1525,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1682218109
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1682218103}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55118b6420c15e84fbc11651bc69b732, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogueText: {fileID: 1063528920}
-  nextButton: {fileID: 356641405}
-  backgroundObject: {fileID: 1311987642}
-  squareObject: {fileID: 1199557893}
-  fadeController: {fileID: 765651125}
 --- !u!225 &1682218110
 CanvasGroup:
   m_ObjectHideFlags: 0
