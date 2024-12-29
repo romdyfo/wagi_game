@@ -6,31 +6,34 @@ public class Moving : MonoBehaviour
     private BoxCollider2D boxCollider;
     public LayerMask layerMask;
 
-    public float speed = 7f;      // ±âº» ÀÌµ¿ ¼Óµµ
-    public int walkCount = 15;    // ÇÑ ¹ø ÀÔ·ÂÀ¸·Î ÀÌµ¿ÇÒ ½ºÅÜ ¼ö
+    public float speed = 7f; // ê¸°ë³¸ ì´ë™ ì†ë„
+    public int walkCount = 15; // í•œ ë²ˆ ì…ë ¥ë‹¹ ì´ë™í•  í”„ë ˆì„ ìˆ˜
     private int currentWalkCount;
 
     private Vector3 vector;
 
-    public float runSpeed = 2f;   // ´Ş¸®±â Ãß°¡ ¼Óµµ
+    public float runSpeed = 2f; // ë‹¬ë¦¬ê¸° ì¶”ê°€ ì†ë„
     private float applyRunSpeed;
-    //private bool applyRunFlag = false;
 
-    private bool canMove = true;  // ÀÌµ¿ °¡´É ¿©ºÎ
+    private bool canMove = true; // ì´ë™ ê°€ëŠ¥ ì—¬ë¶€
 
     private Animator animator;
+
+    private GameObject[] hearts;
+    public string zombieTag = "Zombie"; // ì¢€ë¹„ íƒœê·¸ ì´ë¦„
 
     void Start()
     {
         boxCollider = GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
+        hearts = GameObject.FindGameObjectsWithTag("Heart");
     }
 
     IEnumerator MoveCoroutine()
     {
         while (Input.GetAxisRaw("Vertical") != 0 || Input.GetAxisRaw("Horizontal") != 0)
         {
-            // ´Ş¸®±â ¸ğµå Ã¼Å©
+            // ë‹¬ë¦¬ê¸° ì—¬ë¶€ ì²´í¬
             if (Input.GetKey(KeyCode.LeftShift))
             {
                 applyRunSpeed = runSpeed;
@@ -40,18 +43,18 @@ public class Moving : MonoBehaviour
                 applyRunSpeed = 0;
             }
 
-            // ¹æÇâ º¤ÅÍ ¼³Á¤
+            // ë°©í–¥ ì„¤ì •
             vector.Set(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), transform.position.z);
 
-            // ´ë°¢¼± ÀÌµ¿ ¹æÁö
+            // ëŒ€ê°ì„  ì´ë™ ë°©ì§€
             if (vector.x != 0)
                 vector.y = 0;
 
-            // ¾Ö´Ï¸ŞÀÌÅÍ ¹æÇâ ¼³Á¤
+            // ì• ë‹ˆë©”ì´ì…˜ ë°©í–¥ ì„¤ì •
             animator.SetFloat("DirX", vector.x);
             animator.SetFloat("DirY", vector.y);
 
-            // Ãæµ¹ °¨Áö
+            // ì¶©ëŒ ì²´í¬
             Vector2 start = transform.position;
             Vector2 end = start + new Vector2(vector.x * speed, vector.y * speed);
 
@@ -62,24 +65,24 @@ public class Moving : MonoBehaviour
             if (hit.transform != null)
                 break;
 
-            // ÀÌµ¿ ¾Ö´Ï¸ŞÀÌ¼Ç È°¼ºÈ­
+            // ì´ë™ ì• ë‹ˆë©”ì´ì…˜ í™œì„±í™”
             animator.SetBool("Walking", true);
 
-            // ÀÌµ¿ Ã³¸®
+            // ì´ë™ ì²˜ë¦¬
             while (currentWalkCount < walkCount)
             {
                 transform.Translate(vector.x * (speed + applyRunSpeed) * Time.deltaTime,
                                     vector.y * (speed + applyRunSpeed) * Time.deltaTime,
                                     0);
                 currentWalkCount++;
-                yield return null; // ´ÙÀ½ ÇÁ·¹ÀÓ±îÁö ´ë±â
+                yield return null; // ë‹¤ìŒ í”„ë ˆì„ê¹Œì§€ ëŒ€ê¸°
             }
 
-            currentWalkCount = 0; // ÀÌµ¿ È½¼ö ÃÊ±âÈ­
+            currentWalkCount = 0; // ì´ë™ ì¹´ìš´íŠ¸ ì´ˆê¸°í™”
         }
 
-        animator.SetBool("Walking", false); // ÀÌµ¿ ÁßÁö ¾Ö´Ï¸ŞÀÌ¼Ç
-        canMove = true; // ÀÌµ¿ °¡´É »óÅÂ·Î º¯°æ
+        animator.SetBool("Walking", false); // ì´ë™ ì¤‘ì§€ ì• ë‹ˆë©”ì´ì…˜
+        canMove = true; // ì´ë™ ê°€ëŠ¥ ìƒíƒœë¡œ ì „í™˜
     }
 
     void Update()
@@ -88,9 +91,45 @@ public class Moving : MonoBehaviour
         {
             if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
             {
-                canMove = false; // ÀÌµ¿ Áß¿¡´Â Ãß°¡ ÀÔ·Â ±İÁö
+                canMove = false; // ì´ë™ ì¤‘ ì¶”ê°€ ì…ë ¥ ë°©ì§€
                 StartCoroutine(MoveCoroutine());
             }
         }
     }
+
+    private bool isHandlingCollision = false; // ì¶©ëŒ ì²˜ë¦¬ ì¤‘ì¸ì§€ ì¶”ì 
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // ì¶©ëŒ ì²˜ë¦¬ ì¤‘ì´ë¼ë©´ ë¬´ì‹œ
+        if (isHandlingCollision)
+            return;
+
+        // ì¶©ëŒí•œ ì˜¤ë¸Œì íŠ¸ê°€ ì¢€ë¹„ë¼ë©´
+        if (collision.CompareTag(zombieTag))
+        {
+            isHandlingCollision = true; // ì¶©ëŒ ì²˜ë¦¬ ì‹œì‘
+
+            // ì”¬ì— ìˆëŠ” ëª¨ë“  í•˜íŠ¸ ì˜¤ë¸Œì íŠ¸ë¥¼ ì°¾ì•„ ë°°ì—´ë¡œ ê°€ì ¸ì˜¤ê¸°
+            GameObject[] hearts = GameObject.FindGameObjectsWithTag("Heart");
+
+            foreach (GameObject heart in hearts)
+            {
+                if (heart.activeSelf) // í™œì„±í™”ëœ í•˜íŠ¸ë§Œ ì²˜ë¦¬
+                {
+                    heart.SetActive(false); // ì²« ë²ˆì§¸ë¡œ í™œì„±í™”ëœ í•˜íŠ¸ë¥¼ ë¹„í™œì„±í™”
+                    break; // í•œ ë²ˆë§Œ ì²˜ë¦¬í•˜ê³  ë£¨í”„ ì¢…ë£Œ
+                }
+            }
+
+            // ì¶©ëŒ ì²˜ë¦¬ í›„ ë‹¤ì‹œ í”Œë˜ê·¸ í•´ì œ (ë”œë ˆì´ë¥¼ ì¤„ ìˆ˜ë„ ìˆìŒ)
+            Invoke(nameof(ResetCollisionHandling), 1.8f); // 1.5ì´ˆ í›„ ì²˜ë¦¬ ê°€ëŠ¥
+        }
+    }
+
+    private void ResetCollisionHandling()
+    {
+        isHandlingCollision = false; // ì¶©ëŒ ì²˜ë¦¬ ì™„ë£Œ
+    }
+
 }
