@@ -841,8 +841,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 401940106}
-  - {fileID: 2085001632}
   - {fileID: 929754734}
+  - {fileID: 2085001632}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &32214679
@@ -6288,7 +6288,7 @@ GameObject:
   - component: {fileID: 284328346}
   m_Layer: 0
   m_Name: Zombie1 (2)
-  m_TagString: Untagged
+  m_TagString: Zombie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6403,7 +6403,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.16548106, y: -0.57281977}
+  m_Offset: {x: -0.1604267, y: -0.57281977}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -6414,7 +6414,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5798865, y: 0.13436043}
+  m_Size: {x: 0.5068289, y: 0.13436043}
   m_EdgeRadius: 0
 --- !u!212 &284328350
 SpriteRenderer:
@@ -9224,8 +9224,8 @@ GameObject:
   - component: {fileID: 401940106}
   - component: {fileID: 401940107}
   m_Layer: 0
-  m_Name: heart2
-  m_TagString: Untagged
+  m_Name: heart1
+  m_TagString: Heart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9239,7 +9239,7 @@ Transform:
   m_GameObject: {fileID: 401940105}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 40, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13778,7 +13778,7 @@ GameObject:
   - component: {fileID: 557776823}
   m_Layer: 0
   m_Name: Zombie1 (3)
-  m_TagString: Untagged
+  m_TagString: Zombie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13893,7 +13893,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.16548106, y: -0.57281977}
+  m_Offset: {x: -0.1604267, y: -0.57281977}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -13904,7 +13904,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5798865, y: 0.13436043}
+  m_Size: {x: 0.5068289, y: 0.13436043}
   m_EdgeRadius: 0
 --- !u!212 &557776827
 SpriteRenderer:
@@ -21268,7 +21268,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 893827929}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -22155,8 +22155,8 @@ GameObject:
   - component: {fileID: 929754734}
   - component: {fileID: 929754735}
   m_Layer: 0
-  m_Name: heart1
-  m_TagString: Untagged
+  m_Name: heart2
+  m_TagString: Heart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22170,7 +22170,7 @@ Transform:
   m_GameObject: {fileID: 929754733}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 40, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -36395,7 +36395,7 @@ GameObject:
   - component: {fileID: 1586049402}
   m_Layer: 0
   m_Name: Zombie1 (4)
-  m_TagString: Untagged
+  m_TagString: Zombie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36510,7 +36510,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.16548106, y: -0.57281977}
+  m_Offset: {x: -0.1604267, y: -0.57281977}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -36521,7 +36521,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5798865, y: 0.13436043}
+  m_Size: {x: 0.5068289, y: 0.13436043}
   m_EdgeRadius: 0
 --- !u!212 &1586049406
 SpriteRenderer:
@@ -36675,7 +36675,7 @@ GameObject:
   - component: {fileID: 1588632136}
   m_Layer: 0
   m_Name: Zombie1 (5)
-  m_TagString: Untagged
+  m_TagString: Zombie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36790,7 +36790,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.16548106, y: -0.57281977}
+  m_Offset: {x: -0.16042672, y: -0.57281977}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -36801,7 +36801,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5798865, y: 0.13436043}
+  m_Size: {x: 0.5068289, y: 0.13436043}
   m_EdgeRadius: 0
 --- !u!212 &1588632140
 SpriteRenderer:
@@ -38850,7 +38850,7 @@ GameObject:
   - component: {fileID: 1668408539}
   m_Layer: 0
   m_Name: Zombie1 (1)
-  m_TagString: Untagged
+  m_TagString: Zombie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38965,7 +38965,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.16548106, y: -0.57281977}
+  m_Offset: {x: -0.1604267, y: -0.57281977}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -38976,7 +38976,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5798865, y: 0.13436043}
+  m_Size: {x: 0.5068289, y: 0.1343604}
   m_EdgeRadius: 0
 --- !u!212 &1668408543
 SpriteRenderer:
@@ -41624,7 +41624,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.006977886, y: -0.32058674}
@@ -41679,6 +41679,7 @@ MonoBehaviour:
   speed: 2.4
   walkCount: 20
   runSpeed: 2.4
+  zombieTag: Zombie
 --- !u!212 &1814129390
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -47919,7 +47920,7 @@ GameObject:
   - component: {fileID: 2085001633}
   m_Layer: 0
   m_Name: heart3
-  m_TagString: Untagged
+  m_TagString: Heart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47979,7 +47980,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 6
   m_Sprite: {fileID: 21300000, guid: 496d2284a996d8647a9e8e5b328406d9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
