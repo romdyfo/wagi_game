@@ -19,13 +19,17 @@ public class Moving : MonoBehaviour
 
     private Animator animator;
 
-    private GameObject[] hearts;
+    private GameObject[] hearts; // 하트 배열
     public string zombieTag = "Zombie"; // 좀비 태그 이름
+
+    private bool isHandlingCollision = false; // 충돌 처리 중인지 추적
 
     void Start()
     {
         boxCollider = GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
+
+        // 하트 배열 초기화
         hearts = GameObject.FindGameObjectsWithTag("Heart");
     }
 
@@ -34,14 +38,7 @@ public class Moving : MonoBehaviour
         while (Input.GetAxisRaw("Vertical") != 0 || Input.GetAxisRaw("Horizontal") != 0)
         {
             // 달리기 여부 체크
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                applyRunSpeed = runSpeed;
-            }
-            else
-            {
-                applyRunSpeed = 0;
-            }
+            applyRunSpeed = Input.GetKey(KeyCode.LeftShift) ? runSpeed : 0;
 
             // 방향 설정
             vector.Set(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), transform.position.z);
@@ -87,49 +84,77 @@ public class Moving : MonoBehaviour
 
     void Update()
     {
-        if (canMove)
+        if (canMove && (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0))
         {
-            if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
-            {
-                canMove = false; // 이동 중 추가 입력 방지
-                StartCoroutine(MoveCoroutine());
-            }
+            canMove = false; // 이동 중 추가 입력 방지
+            StartCoroutine(MoveCoroutine());
         }
     }
 
-    private bool isHandlingCollision = false; // 충돌 처리 중인지 추적
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // 충돌 처리 중이라면 무시
+        // 이미 충돌 처리 중이라면 무시
         if (isHandlingCollision)
             return;
 
         // 충돌한 오브젝트가 좀비라면
         if (collision.CompareTag(zombieTag))
         {
-            isHandlingCollision = true; // 충돌 처리 시작
-
-            // 씬에 있는 모든 하트 오브젝트를 찾아 배열로 가져오기
-            GameObject[] hearts = GameObject.FindGameObjectsWithTag("Heart");
-
-            foreach (GameObject heart in hearts)
-            {
-                if (heart.activeSelf) // 활성화된 하트만 처리
-                {
-                    heart.SetActive(false); // 첫 번째로 활성화된 하트를 비활성화
-                    break; // 한 번만 처리하고 루프 종료
-                }
-            }
-
-            // 충돌 처리 후 다시 플래그 해제 (딜레이를 줄 수도 있음)
-            Invoke(nameof(ResetCollisionHandling), 1.8f); // 1.5초 후 처리 가능
+            HandleCollisionWithZombie();
         }
+    }
+
+    private void HandleCollisionWithZombie()
+    {
+        isHandlingCollision = true; // 충돌 처리 시작
+
+        // 활성화된 하트 하나 비활성화
+        foreach (GameObject heart in hearts)
+        {
+            if (heart.activeSelf)
+            {
+                heart.SetActive(false);
+                break; // 한 번만 처리하고 종료
+            }
+        }
+
+        // 남은 하트가 없으면 게임 종료
+        if (CheckHeartsRemaining() == 0)
+        {
+            EndGame();
+        }
+        else
+        {
+            // 충돌 처리 재활성화 딜레이
+            Invoke(nameof(ResetCollisionHandling), 1.5f);
+        }
+    }
+
+    private int CheckHeartsRemaining()
+    {
+        int activeHearts = 0;
+        foreach (GameObject heart in hearts)
+        {
+            if (heart.activeSelf)
+                activeHearts++;
+        }
+        return activeHearts;
+    }
+
+    private void EndGame()
+    {
+        Debug.Log("게임 종료!");
+
+        // 에디터 환경에서는 실행 중지, 빌드된 애플리케이션에서는 종료
+        #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false; // 에디터에서 실행 중지
+        #else
+        Application.Quit(); // 애플리케이션 종료
+        #endif
     }
 
     private void ResetCollisionHandling()
     {
         isHandlingCollision = false; // 충돌 처리 완료
     }
-
 }
