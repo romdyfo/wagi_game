@@ -83,10 +83,10 @@ public class Item : MonoBehaviour
     {
         inventoryManager = GameObject.Find("InventoryCanvas").GetComponent<InventoryManager>();
         
-        // messageText°¡ À¯È¿ÇÏÁö ¾ÊÀº °æ¿ì
+        // messageTextï¿½ï¿½ ï¿½ï¿½È¿ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
         if (messageText == null)
         {
-            messageText = GameObject.Find("MessageText")?.GetComponent<Text>();
+            // messageText = GameObject.Find("MessageText")?.GetComponent<Text>();
             if (messageText == null)
             {
                 Debug.LogError("MessageText is not assigned and could not be found in the scene.");
@@ -95,9 +95,9 @@ public class Item : MonoBehaviour
 
         itemMessages = new Dictionary<string, string>
         {
-            { "redFlower", "»¡°£²ÉÀ» È¹µæÇÏ¿´½À´Ï´Ù!" },
-            { "redFlower(1)", "»¡°£²É2À» È¹µæÇÏ¿´½À´Ï´Ù!" },
-            { "blueFlower", "ÆÄ¶õ²ÉÀ» È¹µæÇÏ¿´½À´Ï´Ù!" }
+            { "redFlower", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È¹ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ï¿½Ï´ï¿½!" },
+            { "redFlower(1)", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½2ï¿½ï¿½ È¹ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ï¿½Ï´ï¿½!" },
+            { "blueFlower", "ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½ï¿½ È¹ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ï¿½Ï´ï¿½!" }
         };
     }
 
@@ -106,11 +106,11 @@ public class Item : MonoBehaviour
 
         if (collision.gameObject.tag == "Player")
         {
-            // Ãæµ¹ÇÑ ¿ÀºêÁ§Æ® ÀÌ¸§À» °¡Á®¿È
+            // ï¿½æµ¹ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             string objectName = collision.otherCollider.gameObject.name;
             Debug.Log("Collided with object: " +  objectName);
 
-            // ¸Þ½ÃÁö °¡Á®¿À±â
+            // ï¿½Þ½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             string message = GetMessageForObject(objectName);
             ShowMessage(message);
             Debug.Log("Message shown.");
@@ -130,14 +130,14 @@ public class Item : MonoBehaviour
 
     private string GetMessageForObject(string objectName)
     {
-        // µñ¼Å³Ê¸®¿¡¼­ ¸Þ½ÃÁö ¹ÝÈ¯
+        // ï¿½ï¿½Å³Ê¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯
         if (itemMessages.ContainsKey(objectName))
         {
             return itemMessages[objectName];
         }
         else
         {
-            return "¾ÆÀÌÅÛÀ» È¹µæÇÏ¿´½À´Ï´Ù!";  // ±âº» ¸Þ½ÃÁö
+            return "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È¹ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ï¿½Ï´ï¿½!";  // ï¿½âº» ï¿½Þ½ï¿½ï¿½ï¿½
         }
     }
 
@@ -147,18 +147,18 @@ public class Item : MonoBehaviour
         {
             Debug.Log("ShowMessage called.");
 
-            // ±âÁ¸ ÄÚ·çÆ¾ÀÌ ½ÇÇà ÁßÀÌ¸é ÁßÁö
+            // ï¿½ï¿½ï¿½ï¿½ ï¿½Ú·ï¿½Æ¾ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½
             if (currentMessageCoroutine != null)
             {
                 Debug.Log("Stopping existing coroutine.");
                 StopCoroutine(currentMessageCoroutine);
             }
 
-            // ¸Þ½ÃÁö Ç¥½Ã
+            // ï¿½Þ½ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½
             messageText.text = message;
             messageText.gameObject.SetActive(true);
 
-            // »õ·Î¿î ÄÚ·çÆ¾ ½ÃÀÛ
+            // ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½Ú·ï¿½Æ¾ ï¿½ï¿½ï¿½ï¿½
             currentMessageCoroutine = StartCoroutine(HideMessageAfterDelay());
         }
         else
@@ -170,17 +170,17 @@ public class Item : MonoBehaviour
     private IEnumerator HideMessageAfterDelay()
     {
         Debug.Log("HideMessageAfterDelay started.");
-        yield return new WaitForSeconds(messageDisplayTime); // 2ÃÊ ´ë±â
+        yield return new WaitForSeconds(messageDisplayTime); // 2ï¿½ï¿½ ï¿½ï¿½ï¿½
         Debug.Log("Wait finished.");
 
         if (messageText != null)
         {
-            messageText.text = ""; // ¸Þ½ÃÁö ÃÊ±âÈ­
+            messageText.text = ""; // ï¿½Þ½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
             messageText.enabled = false;
             Debug.Log("Message hidden.");
         }
 
-        // ½ÇÇà ÁßÀÎ ÄÚ·çÆ¾ ÃÊ±âÈ­
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ú·ï¿½Æ¾ ï¿½Ê±ï¿½È­
         currentMessageCoroutine = null;
     }
 
