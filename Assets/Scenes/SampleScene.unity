@@ -41878,9 +41878,9 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 64
-  speed: 2.4
-  walkCount: 20
-  runSpeed: 2.4
+  speed: 4.8
+  walkCount: 5
+  runSpeed: 4.8
   zombieTag: Zombie
 --- !u!212 &1814129390
 SpriteRenderer:
