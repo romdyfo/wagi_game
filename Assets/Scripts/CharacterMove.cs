@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Moving : MonoBehaviour
 {
@@ -118,10 +119,11 @@ public class Moving : MonoBehaviour
             }
         }
 
-        // 남은 하트가 없으면 게임 종료
+        // 남은 하트가 없으면 게임 종료 --> 게임 오버 창 띄우기기
         if (CheckHeartsRemaining() == 0)
         {
-            EndGame();
+            // EndGame();
+            SceneManager.LoadScene("ending");
         }
         else
         {
