@@ -98,8 +98,10 @@ public class Moving : MonoBehaviour
         if (isHandlingCollision)
             return;
 
-        // 충돌한 오브젝트가 좀비라면
-        if (collision.CompareTag(zombieTag))
+        // 충돌 대상이 CapsuleCollider2D인지 확인
+        CapsuleCollider2D capsuleCollider = collision as CapsuleCollider2D;
+
+        if (capsuleCollider != null && collision.CompareTag(zombieTag))
         {
             HandleCollisionWithZombie();
         }
