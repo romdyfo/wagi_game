@@ -25,6 +25,8 @@ public class ProximityToPlayerClick2D : MonoBehaviour
     private InventoryManager inventoryManager;
 
     private Text messageText;
+   
+    [SerializeField]
     private float messageDisplayTime = 2f;
 
     private Coroutine currentMessageCoroutine;
@@ -62,15 +64,6 @@ public class ProximityToPlayerClick2D : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        // Detect right mouse button click
-        if (Input.GetMouseButtonDown(1)) // 1 is for right-click
-        {
-            CheckPlayerProximityAndClick();
-        }
-    }
-
     void CheckPlayerProximityAndClick()
     {
         // Ensure the player reference is valid
@@ -90,6 +83,7 @@ public class ProximityToPlayerClick2D : MonoBehaviour
             ShowMessage(message);
 
             int leftOverItems = inventoryManager.AddItem(itemName, quantity, sprite, itemDescription);
+
             if (leftOverItems <= 0)
             {
                 Destroy(gameObject);
@@ -98,6 +92,12 @@ public class ProximityToPlayerClick2D : MonoBehaviour
             {
                 quantity = leftOverItems;
 
+            }
+
+            if (inventoryManager.CheckItems())
+            {
+                Debug.Log("재료 모두 획득");
+                ShowMessage("재료를 모두 획득했다!\n이제 과학실로 가서 치료제를 제조하자");
             }
         }
         else
@@ -142,5 +142,14 @@ public class ProximityToPlayerClick2D : MonoBehaviour
         }
 
         currentMessageCoroutine = null;
+    }
+
+    void Update()
+    {
+        // Detect right mouse button click
+        if (Input.GetMouseButtonDown(1)) // 1 is for right-click
+        {
+            CheckPlayerProximityAndClick();
+        }
     }
 }
