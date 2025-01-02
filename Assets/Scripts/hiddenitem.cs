@@ -25,8 +25,6 @@ public class ProximityToPlayerClick2D : MonoBehaviour
     private InventoryManager inventoryManager;
 
     private Text messageText;
-   
-    [SerializeField]
     private float messageDisplayTime = 2f;
 
     private Coroutine currentMessageCoroutine;
@@ -64,6 +62,15 @@ public class ProximityToPlayerClick2D : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+        // Detect right mouse button click
+        if (Input.GetMouseButtonDown(1)) // 1 is for right-click
+        {
+            CheckPlayerProximityAndClick();
+        }
+    }
+
     void CheckPlayerProximityAndClick()
     {
         // Ensure the player reference is valid
@@ -83,7 +90,6 @@ public class ProximityToPlayerClick2D : MonoBehaviour
             ShowMessage(message);
 
             int leftOverItems = inventoryManager.AddItem(itemName, quantity, sprite, itemDescription);
-
             if (leftOverItems <= 0)
             {
                 Destroy(gameObject);
@@ -92,12 +98,6 @@ public class ProximityToPlayerClick2D : MonoBehaviour
             {
                 quantity = leftOverItems;
 
-            }
-
-            if (inventoryManager.CheckItems())
-            {
-                Debug.Log("Àç·á ¸ðµÎ È¹µæ");
-                ShowMessage("Àç·á¸¦ ¸ðµÎ È¹µæÇß´Ù!\nÀÌÁ¦ °úÇÐ½Ç·Î °¡¼­ Ä¡·áÁ¦¸¦ Á¦Á¶ÇÏÀÚ");
             }
         }
         else
@@ -108,24 +108,24 @@ public class ProximityToPlayerClick2D : MonoBehaviour
 
     private string GetMessageForItem(string itemName)
     {
-        return $"{itemName}À»(¸¦) È¹µæÇÏ¿´½À´Ï´Ù.";
+        return $"{itemName}ì„ íšë“í–ˆìŠµë‹ˆë‹¤.";
     }
 
     private void ShowMessage(string message)
     {
         if (messageText != null)
         {
-            // ±âÁ¸ ¸Þ½ÃÁö ÄÚ·çÆ¾ Áß´Ü
+            //       Þ½     Ú· Æ¾  ß´ 
             if (currentMessageCoroutine != null)
             {
                 StopCoroutine(currentMessageCoroutine);
             }
 
-            // ¸Þ½ÃÁö ¼³Á¤ ¹× Ç¥½Ã
+            //  Þ½            Ç¥  
             messageText.text = message;
             messageText.gameObject.SetActive(true);
 
-            // ÀÏÁ¤ ½Ã°£ ÈÄ ¸Þ½ÃÁö ¼û±è
+            //       Ã°      Þ½        
             currentMessageCoroutine = StartCoroutine(HideMessageAfterDelay());
         }
     }
@@ -134,7 +134,9 @@ public class ProximityToPlayerClick2D : MonoBehaviour
     {
         yield return new WaitForSeconds(messageDisplayTime);
 
-        // ¸Þ½ÃÁö ¼û±è
+        
+
+        //  Þ½        
         if (messageText != null)
         {
             messageText.text = "";
@@ -142,14 +144,5 @@ public class ProximityToPlayerClick2D : MonoBehaviour
         }
 
         currentMessageCoroutine = null;
-    }
-
-    void Update()
-    {
-        // Detect right mouse button click
-        if (Input.GetMouseButtonDown(1)) // 1 is for right-click
-        {
-            CheckPlayerProximityAndClick();
-        }
     }
 }
