@@ -544,7 +544,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 500, y: 50}
+  m_SizeDelta: {x: 500, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &20216616
 MonoBehaviour:
@@ -568,7 +568,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 20
+    m_FontSize: 25
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -5603,7 +5603,7 @@ Transform:
   m_GameObject: {fileID: 250746639}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -302.67, y: -175.98, z: 0.44764543}
+  m_LocalPosition: {x: -302.59, y: -176.04, z: 1}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5626,9 +5626,10 @@ MonoBehaviour:
       m_Calls: []
   proximityTolerance: 10
   itemName: "\uC5F0\uD544"
-  quantity: 0
-  sprite: {fileID: 0}
+  quantity: 2
+  sprite: {fileID: 21300000, guid: cb90fbf8fdd299142a6459b27ccea879, type: 3}
   itemDescription: 
+  messageDisplayTime: 2
   playerTag: Player
 --- !u!61 &250746642
 BoxCollider2D:
@@ -13293,7 +13294,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.8, y: -4.35, z: -11}
+  m_LocalPosition: {x: 0.21, y: 0.62, z: -11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -28650,7 +28651,7 @@ Transform:
   m_GameObject: {fileID: 1242681854}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -332.14, y: -165.79, z: 0.44764543}
+  m_LocalPosition: {x: -332.1, y: -165.9, z: 0.44764543}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -28673,9 +28674,10 @@ MonoBehaviour:
       m_Calls: []
   proximityTolerance: 10
   itemName: "\uC54C\uC57D"
-  quantity: 0
-  sprite: {fileID: 0}
+  quantity: 3
+  sprite: {fileID: 21300000, guid: 1f4c4ad24c0f0cb46a36a6164d278c25, type: 3}
   itemDescription: 
+  messageDisplayTime: 2
   playerTag: Player
 --- !u!61 &1242681857
 BoxCollider2D:
@@ -40853,7 +40855,7 @@ Transform:
   m_GameObject: {fileID: 1759988580}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.8, y: -4.35, z: -11}
+  m_LocalPosition: {x: 0.21, y: 0.62, z: -11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -42105,7 +42107,7 @@ Transform:
   m_GameObject: {fileID: 1814129386}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.8, y: -4.35, z: -1}
+  m_LocalPosition: {x: 0.21, y: 0.62, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -44486,7 +44488,7 @@ Transform:
   m_GameObject: {fileID: 1923713024}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -315.82, y: -167.26, z: 0.4476}
+  m_LocalPosition: {x: -318.49, y: -155.27, z: 0.4476}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -44509,9 +44511,10 @@ MonoBehaviour:
       m_Calls: []
   proximityTolerance: 10
   itemName: "\uB178\uD2B8"
-  quantity: 0
-  sprite: {fileID: 0}
+  quantity: 1
+  sprite: {fileID: 21300000, guid: a05ac935360308d49aefb8087c20bc92, type: 3}
   itemDescription: 
+  messageDisplayTime: 2
   playerTag: Player
 --- !u!61 &1923713027
 BoxCollider2D:

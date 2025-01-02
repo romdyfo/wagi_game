@@ -2,19 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour
 {
     public GameObject InventoryMenu;
     private bool menuActivated;
-    
     public ItemSlot[] itemSlot;
 
-    
+    private Text messageText;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+      
     }
 
     // Update is called once per frame
@@ -53,5 +54,34 @@ public class InventoryManager : MonoBehaviour
             itemSlot[i].selectedShader.SetActive(false);
             itemSlot[i].thisItemSelected = false;
         }
+    }
+
+    public bool CheckItems()
+    {
+        bool hasItem1 = false, hasItem2 = false, hasItem3 = false;
+
+        // 각 아이템이 인벤토리에 있는지 확인
+        foreach (var slot in itemSlot)
+        {
+            if (slot.itemName == "노트" && slot.quantity > 0)
+            {
+                hasItem1 = true;
+            }
+            if (slot.itemName == "연필" && slot.quantity > 0)
+            {
+                hasItem2 = true;
+            }
+            if (slot.itemName == "알약" && slot.quantity > 0)
+            {
+                hasItem3 = true;
+            }
+        }
+
+        if (hasItem1 && hasItem2 && hasItem3)
+        {
+            return true;
+        }
+        else
+            return false;
     }
 }
