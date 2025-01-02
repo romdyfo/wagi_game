@@ -132,8 +132,9 @@ public class ProximityToPlayerClick2D : MonoBehaviour
 
     private IEnumerator HideMessageAfterDelay()
     {
-        yield return new WaitForSeconds(messageDisplayTime);
 
+        yield return new WaitForSeconds(messageDisplayTime);
+        
         
 
         //  ޽        
