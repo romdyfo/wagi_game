@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 
 public class ItemSlot : MonoBehaviour, IPointerClickHandler
 {
-    //Item Data
+    // Item Data
     public string itemName;
     public int quantity;
     public Sprite itemSprite;
@@ -16,119 +16,122 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
 
     private InventoryManager inventoryManager;
 
-    private void Start(){
+    // Crafting Slots
+    [SerializeField]
+    private CraftingSlot[] craftingSlots; // 제작칸 배열
+
+    private void Start()
+    {
         inventoryManager = GameObject.Find("InventoryCanvas").GetComponent<InventoryManager>();
     }
 
-    //Item slot
+    // Item slot
     [SerializeField]
     private TMP_Text quantityText;
-    
+
     [SerializeField]
     private Image itemImage;
 
     [SerializeField]
     private int maxNumberOfItems;
 
-    //Item description slot
-
+    // Item description slot
     public Image itemDescriptionImage;
     public TMP_Text ItemDescriptionNameText;
-
     public TMP_Text ItemDescriptionText;
 
     public GameObject selectedShader;
     public bool thisItemSelected;
 
-    
-
-    public int AddItem(string itemName, int quantity, Sprite itemSprite, string itemDescription){
-        //check slot 
-        if(isFull){
+    public int AddItem(string itemName, int quantity, Sprite itemSprite, string itemDescription)
+    {
+        // Check slot
+        if (isFull)
+        {
             return quantity;
         }
 
-        //update name, quantity, image, description
+        // Update name, quantity, image, description
         this.itemName = itemName;
-
         this.itemSprite = itemSprite;
-        
+
         itemImage.sprite = itemSprite;
         itemImage.enabled = true;
-        
-        this.itemDescription = itemDescription;
 
+        this.itemDescription = itemDescription;
         this.quantity += quantity;
 
-        if(this.quantity >= maxNumberOfItems){
+        if (this.quantity >= maxNumberOfItems)
+        {
             quantityText.text = maxNumberOfItems.ToString();
             quantityText.enabled = true;
             isFull = true;
 
-            //return leftovers
+            // Return leftovers
             int extraItems = this.quantity - maxNumberOfItems;
             this.quantity = maxNumberOfItems;
             return extraItems;
-
         }
 
-        //update quantitytext
-
+        // Update quantity text
         quantityText.text = this.quantity.ToString();
         quantityText.enabled = true;
         return 0;
-        
-    
-
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if(eventData.button == PointerEventData.InputButton.Left){
-            OnLeftClick();
+        if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            MoveToCraftingSlot(); // 클릭하면 제작칸으로 이동
         }
-        if(eventData.button == PointerEventData.InputButton.Right){
+        if (eventData.button == PointerEventData.InputButton.Right)
+        {
             OnRightClick();
         }
     }
 
-    public void OnLeftClick(){
-        if(thisItemSelected){
-            
-            this.quantity-=1;
-            quantityText.text = this.quantity.ToString();
-            if(this.quantity<=0)
-                EmptySlot();
-            
+    private void MoveToCraftingSlot()
+    {
+        Debug.Log($"MoveToCraftingSlot called for {itemName} with quantity {quantity}");
+        foreach (var craftingSlot in craftingSlots)
+        {
+            if (craftingSlot.IsEmpty()) // 빈 슬롯에만 추가
+            {
+                craftingSlot.SetItem(itemName, 1, itemSprite); // 제작칸에 수량 1개 이동
+                quantity -= 1;
 
-        }
-        else {
-            inventoryManager.DeselectAllSlots();
-            selectedShader.SetActive(true);
-            thisItemSelected = true;
-            ItemDescriptionNameText.text = itemName;
-            ItemDescriptionText.text = itemDescription;
-            itemDescriptionImage.sprite = itemSprite;
-            itemDescriptionImage.enabled = true;
-        }
+                // 인벤토리 슬롯 갱신
+                if (quantity <= 0)
+                {
+                    EmptySlot(); // 슬롯 비우기
+                }
+                else
+                {
+                    quantityText.text = quantity.ToString();
+                }
 
+                break; // 첫 빈칸에만 추가
+            }
+        }
     }
-    
-    public void EmptySlot(){
-        quantityText.enabled = false;
-        itemDescriptionImage.enabled = false;
+
+    private void EmptySlot()
+    {
+        itemName = "";
+        quantity = 0;
+        itemSprite = null;
+        isFull = false;
+
+        // UI 초기화
+        itemImage.sprite = null;
         itemImage.enabled = false;
-        
-
-        ItemDescriptionNameText.text = "";
-        ItemDescriptionText.text = "";
-
-
+        quantityText.text = "";
+        quantityText.enabled = false;
     }
 
-    public void OnRightClick(){
-
+    public void OnRightClick()
+    {
+        // 우클릭 동작 추가 가능
     }
-
-    
 }
