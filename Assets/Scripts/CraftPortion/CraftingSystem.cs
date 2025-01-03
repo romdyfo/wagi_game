@@ -9,6 +9,10 @@ public class CraftingSystem : MonoBehaviour
     public string potionDescription = "체력을 회복시켜주는 강력한 물약"; // 물약 설명
     public int potionQuantity = 3; // 제작 시 생성되는 물약 수량
 
+    public GameObject ghostPrefab; // 귀신 프리팹
+    public Transform spawnPoint; // 귀신 생성 위치
+
+
     public void OnCraftButtonClicked()
     {
         // 제작칸 확인
@@ -27,6 +31,9 @@ public class CraftingSystem : MonoBehaviour
 
         // 제작칸 비우기
         ClearCraftingSlots();
+
+        // 귀신 생성
+        SpawnGhost();
     }
 
     private void AddPotionToInventory()
@@ -59,4 +66,33 @@ public class CraftingSystem : MonoBehaviour
         }
         Debug.Log("모든 제작칸이 초기화되었습니다.");
     }
+
+    private void SpawnGhost()
+    {
+        if (ghostPrefab != null && spawnPoint != null)
+        {
+            // 귀신 Prefab을 SpawnPoint 위치에 생성
+            GameObject ghost = Instantiate(ghostPrefab, spawnPoint.position, Quaternion.identity);
+
+            // 생성된 귀신에게 플레이어 정보 전달
+            Ghost ghostScript = ghost.GetComponent<Ghost>();
+            if (ghostScript != null)
+            {
+                GameObject player = GameObject.FindWithTag("Player"); // 플레이어 오브젝트 찾기
+                if (player != null)
+                {
+                    ghostScript.player = player.transform;
+                }
+            }
+
+            Debug.Log("귀신이 생성되었습니다!");
+        }
+        else
+        {
+            Debug.LogError("귀신 Prefab 또는 Spawn Point가 설정되지 않았습니다.");
+        }
+    }
+
+
+
 }
