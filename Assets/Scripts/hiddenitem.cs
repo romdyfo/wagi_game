@@ -29,7 +29,7 @@ public class ProximityToPlayerClick2D : MonoBehaviour
 
     private Coroutine currentMessageCoroutine;
 
-    private GameObject player; // Reference to the player GameObject
+    private GameObject player;
 
     [SerializeField]
     private string playerTag = "Player"; // Tag used to identify the player GameObject
@@ -115,28 +115,25 @@ public class ProximityToPlayerClick2D : MonoBehaviour
     {
         if (messageText != null)
         {
-            //       ޽     ڷ ƾ  ߴ 
             if (currentMessageCoroutine != null)
             {
                 StopCoroutine(currentMessageCoroutine);
             }
 
-            //  ޽            ǥ  
             messageText.text = message;
             messageText.gameObject.SetActive(true);
 
-            //       ð      ޽        
             currentMessageCoroutine = StartCoroutine(HideMessageAfterDelay());
         }
     }
 
     private IEnumerator HideMessageAfterDelay()
     {
+
         yield return new WaitForSeconds(messageDisplayTime);
 
-        
 
-        //  ޽        
+        
         if (messageText != null)
         {
             messageText.text = "";
