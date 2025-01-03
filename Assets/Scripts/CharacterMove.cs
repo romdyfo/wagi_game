@@ -25,6 +25,9 @@ public class Moving : MonoBehaviour
 
     private bool isHandlingCollision = false; // 충돌 처리 중인지 추적
 
+    public float directionX { get; private set; } // 현재 바라보는 X 방향
+    public float directionY { get; private set; } // 현재 바라보는 Y 방향
+
     void Start()
     {
         boxCollider = GetComponent<BoxCollider2D>();
@@ -48,11 +51,9 @@ public class Moving : MonoBehaviour
             if (vector.x != 0)
                 vector.y = 0;
 
-            // 애니메이션 방향 설정
             animator.SetFloat("DirX", vector.x);
             animator.SetFloat("DirY", vector.y);
 
-            // 충돌 체크
             Vector2 start = transform.position;
             Vector2 end = start + new Vector2(vector.x * speed, vector.y * speed);
 
@@ -87,18 +88,21 @@ public class Moving : MonoBehaviour
     {
         if (canMove && (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0))
         {
-            canMove = false; // 이동 중 추가 입력 방지
+
+            directionX = Input.GetAxisRaw("Horizontal");
+            directionY = Input.GetAxisRaw("Vertical");
+
+            canMove = false;
             StartCoroutine(MoveCoroutine());
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // 이미 충돌 처리 중이라면 무시
+
         if (isHandlingCollision)
             return;
 
-        // 충돌 대상이 CapsuleCollider2D인지 확인
         CapsuleCollider2D capsuleCollider = collision as CapsuleCollider2D;
 
         if (capsuleCollider != null && collision.CompareTag(zombieTag))
@@ -150,11 +154,11 @@ public class Moving : MonoBehaviour
         Debug.Log("게임 종료!");
 
         // 에디터 환경에서는 실행 중지, 빌드된 애플리케이션에서는 종료
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false; // 에디터에서 실행 중지
-        #else
+#else
         Application.Quit(); // 애플리케이션 종료
-        #endif
+#endif
     }
 
     private void ResetCollisionHandling()

@@ -83,7 +83,7 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
     {
         if (eventData.button == PointerEventData.InputButton.Left)
         {
-            MoveToCraftingSlot(); // 클릭하면 제작칸으로 이동
+            MoveToCraftingSlot();
         }
         if (eventData.button == PointerEventData.InputButton.Right)
         {
@@ -101,22 +101,21 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
                 craftingSlot.SetItem(itemName, 1, itemSprite); // 제작칸에 수량 1개 이동
                 quantity -= 1;
 
-                // 인벤토리 슬롯 갱신
                 if (quantity <= 0)
                 {
-                    EmptySlot(); // 슬롯 비우기
+                    EmptySlot();
                 }
                 else
                 {
                     quantityText.text = quantity.ToString();
                 }
 
-                break; // 첫 빈칸에만 추가
+                break;
             }
         }
     }
 
-    private void EmptySlot()
+    public void EmptySlot()
     {
         itemName = "";
         quantity = 0;
@@ -132,6 +131,6 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
 
     public void OnRightClick()
     {
-        // 우클릭 동작 추가 가능
+        // 우클릭 동작 하다 안됨...
     }
 }

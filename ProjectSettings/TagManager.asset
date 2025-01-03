@@ -7,6 +7,8 @@ TagManager:
   - Desk
   - Zombie
   - Heart
+  - Potion
+  - Ghost
   layers:
   - Default
   - TransparentFX
@@ -41,6 +43,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Ghost
+    uniqueID: 440622267
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Furniture
+    uniqueID: 1981685115
     locked: 0

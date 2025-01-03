@@ -15,42 +15,50 @@ public class InventoryManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-      
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.I) && menuActivated){
+        if (Input.GetKeyDown(KeyCode.I) && menuActivated)
+        {
             InventoryMenu.SetActive(false);
             menuActivated = false;
         }
-        else if(Input.GetKeyDown(KeyCode.I) && !menuActivated){
+        else if (Input.GetKeyDown(KeyCode.I) && !menuActivated)
+        {
             InventoryMenu.SetActive(true);
             menuActivated = true;
         }
     }
 
-    
 
-    public int AddItem(string itemName, int quantity, Sprite itemSprite, string itemDescription){
-        for(int i = 0; i < itemSlot.Length; i ++){
-            if((itemSlot[i].isFull == false && itemSlot[i].itemName == itemName) || itemSlot[i].quantity == 0)
+
+    public int AddItem(string itemName, int quantity, Sprite itemSprite, string itemDescription)
+    {
+
+        for (int i = 0; i < itemSlot.Length; i++)
+        {
+            if ((itemSlot[i].isFull == false && itemSlot[i].itemName == itemName) || itemSlot[i].quantity == 0)
             {
-                int leftOverItems = itemSlot[i].AddItem(itemName ,quantity, itemSprite, itemDescription);
-                if(leftOverItems > 0 ){
+                int leftOverItems = itemSlot[i].AddItem(itemName, quantity, itemSprite, itemDescription);
+                if (leftOverItems > 0)
+                {
                     leftOverItems = AddItem(itemName, leftOverItems, itemSprite, itemDescription);
-                    
+
                 }
                 return leftOverItems;
-                
+
             }
         }
         return quantity;
     }
 
-    public void DeselectAllSlots(){
-        for(int i = 0; i < itemSlot.Length; i ++){
+    public void DeselectAllSlots()
+    {
+        for (int i = 0; i < itemSlot.Length; i++)
+        {
             itemSlot[i].selectedShader.SetActive(false);
             itemSlot[i].thisItemSelected = false;
         }
@@ -60,7 +68,6 @@ public class InventoryManager : MonoBehaviour
     {
         bool hasItem1 = false, hasItem2 = false, hasItem3 = false;
 
-        // 각 아이템이 인벤토리에 있는지 확인
         foreach (var slot in itemSlot)
         {
             if (slot.itemName == "노트" && slot.quantity > 0)
@@ -84,4 +91,35 @@ public class InventoryManager : MonoBehaviour
         else
             return false;
     }
+
+    public bool UsePotion(string itemName)
+    {
+        Debug.Log($"Trying to use potion: {itemName}");
+
+        foreach (var slot in itemSlot)
+        {
+            Debug.Log($"Slot contains: {slot.itemName} (Quantity: {slot.quantity})");
+
+            if (string.Equals(slot.itemName.Trim(), itemName.Trim(), System.StringComparison.OrdinalIgnoreCase) && slot.quantity > 0)
+            {
+                slot.quantity--;
+                if (slot.quantity <= 0)
+                {
+                    slot.EmptySlot();
+                }
+                Debug.Log($"Potion {itemName} used. Remaining quantity: {slot.quantity}");
+                return true;
+            }
+            else
+            {
+                Debug.LogWarning($"Item name mismatch: slot={slot.itemName}, potion={itemName}");
+            }
+        }
+
+        Debug.LogWarning("물약이 없습니다!");
+        return false;
+    }
+
+
+
 }
