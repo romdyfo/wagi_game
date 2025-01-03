@@ -8849,7 +8849,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f04446b89222ca7418781eaf0f13d03e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: 3
+  itemName: 
   quantity: 0
   itemSprite: {fileID: 0}
   slotImage: {fileID: 362042289}
@@ -34982,7 +34982,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f04446b89222ca7418781eaf0f13d03e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: 2
+  itemName: 
   quantity: 0
   itemSprite: {fileID: 0}
   slotImage: {fileID: 1477739233}
@@ -43059,6 +43059,7 @@ GameObject:
   - component: {fileID: 1814129387}
   - component: {fileID: 1814129392}
   - component: {fileID: 1814129393}
+  - component: {fileID: 1814129394}
   m_Layer: 0
   m_Name: characters 1_10
   m_TagString: Player
@@ -43280,6 +43281,21 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0.6116798}
   m_Size: {x: 1, y: 2.0233588}
   m_Direction: 0
+--- !u!114 &1814129394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1814129386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 672965fd8c724e8419cb3794a838fd10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  potionPrefab: {fileID: 3999492982832850398, guid: 892695f2b84c1a140992731952645a68, type: 3}
+  throwForce: 10
+  potionName: "\uCE58\uB8CC\uC81C"
 --- !u!1 &1823494143
 GameObject:
   m_ObjectHideFlags: 0
@@ -49827,7 +49843,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f04446b89222ca7418781eaf0f13d03e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: 1
+  itemName: 
   quantity: 0
   itemSprite: {fileID: 0}
   slotImage: {fileID: 2086779139}
