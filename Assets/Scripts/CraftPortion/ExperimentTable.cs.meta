@@ -3,7 +3,8 @@ guid: 2507da8a779201c4ea36013043b41696
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - craftingPanel: {fileID: 1403947207858513712, guid: d7ec76486d2da6d4ead1ed43d4074828, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
