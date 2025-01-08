@@ -45608,7 +45608,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   proximityTolerance: 2
-  itemName: "\uB178"
+  itemName: "\uB178\uD2B8"
   quantity: 1
   sprite: {fileID: 21300000, guid: a05ac935360308d49aefb8087c20bc92, type: 3}
   itemDescription: 
