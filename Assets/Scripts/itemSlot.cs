@@ -18,11 +18,15 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
 
     // Crafting Slots
     [SerializeField]
-    private CraftingSlot[] craftingSlots; // ����ĭ �迭
+    private CraftingSlot[] craftingSlots; // 제작칸 배열
+
+    private GameObject paper;
 
     private void Start()
     {
         inventoryManager = GameObject.Find("InventoryCanvas").GetComponent<InventoryManager>();
+         paper = GameObject.Find("Paper");
+
     }
 
     // Item slot
@@ -43,9 +47,20 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
     public GameObject selectedShader;
     public bool thisItemSelected;
 
+    private bool isMaterial(params string[] validNames)
+    {
+        foreach (string validName in validNames)
+        {
+            if (itemName == validName)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public int AddItem(string itemName, int quantity, Sprite itemSprite, string itemDescription)
     {
-        
         // Check slot
         if (isFull)
         {
@@ -84,7 +99,22 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
     {
         if (eventData.button == PointerEventData.InputButton.Left)
         {
-            MoveToCraftingSlot();
+            if (isMaterial("연필", "알약", "수행평가 종이"))
+            {
+                MoveToCraftingSlot();
+            }
+            else
+            {
+                if (paper.activeSelf)
+                {
+                    paper.SetActive(false);
+                }
+                else
+                {
+                    Debug.Log("이건 노트");
+                    paper.SetActive(true);
+                }
+            }
         }
         if (eventData.button == PointerEventData.InputButton.Right)
         {
@@ -97,9 +127,9 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
         Debug.Log($"MoveToCraftingSlot called for {itemName} with quantity {quantity}");
         foreach (var craftingSlot in craftingSlots)
         {
-            if (craftingSlot.IsEmpty()) // �� ���Կ��� �߰�
+            if (craftingSlot.IsEmpty()) // 빈 슬롯에만 추가
             {
-                craftingSlot.SetItem(itemName, 1, itemSprite); // ����ĭ�� ���� 1�� �̵�
+                craftingSlot.SetItem(itemName, 1, itemSprite); // 제작칸에 수량 1개 이동
                 quantity -= 1;
 
                 if (quantity <= 0)
@@ -123,7 +153,7 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
         itemSprite = null;
         isFull = false;
 
-        // UI �ʱ�ȭ
+        // UI 초기화
         itemImage.sprite = null;
         itemImage.enabled = false;
         quantityText.text = "";
@@ -132,6 +162,22 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
 
     public void OnRightClick()
     {
-        // ��Ŭ�� ���� �ϴ� �ȵ�...
+        // 우클릭 동작 하다 안됨...
+    }
+
+    private void HandlePaperCanvas()
+    {
+        if (paper != null)
+        {
+            if (paper.activeSelf)
+            {
+                paper.SetActive(false);
+            }
+            else
+            {
+                Debug.Log("이건 노트");
+                paper.SetActive(true);
+            }
+        }
     }
 }

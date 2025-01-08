@@ -82,15 +82,15 @@ public class InventoryManager : MonoBehaviour
 
         foreach (var slot in itemSlot)
         {
-            if (slot.itemName == "��Ʈ" && slot.quantity > 0)
+            if (slot.itemName == "수행평가 종이" && slot.quantity > 0)
             {
                 hasItem1 = true;
             }
-            if (slot.itemName == "����" && slot.quantity > 0)
+            if (slot.itemName == "연필" && slot.quantity > 0)
             {
                 hasItem2 = true;
             }
-            if (slot.itemName == "�˾�" && slot.quantity > 0)
+            if (slot.itemName == "알약" && slot.quantity > 0)
             {
                 hasItem3 = true;
             }
