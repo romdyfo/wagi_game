@@ -87,7 +87,7 @@ public class ProximityToPlayerClick2D : MonoBehaviour
             Debug.Log("Player is close enough! Item clicked.");
 
             string message = GetMessageForItem(itemName);
-            ShowMessage(message);
+            //ShowMessage(message);
 
             int leftOverItems = inventoryManager.AddItem(itemName, quantity, sprite, itemDescription);
             if (leftOverItems <= 0)
@@ -99,6 +99,7 @@ public class ProximityToPlayerClick2D : MonoBehaviour
                 quantity = leftOverItems;
 
             }
+            
         }
         else
         {

@@ -72,7 +72,7 @@ public class Item : MonoBehaviour
     private string itemDescription;
 
     private InventoryManager inventoryManager;
-   
+    
     private Text messageText;
     private float messageDisplayTime = 2f;
     private Coroutine currentMessageCoroutine;

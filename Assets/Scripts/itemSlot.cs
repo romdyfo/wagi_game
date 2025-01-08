@@ -18,7 +18,7 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
 
     // Crafting Slots
     [SerializeField]
-    private CraftingSlot[] craftingSlots; // Á¦ÀÛÄ­ ¹è¿­
+    private CraftingSlot[] craftingSlots; // ï¿½ï¿½ï¿½ï¿½Ä­ ï¿½è¿­
 
     private void Start()
     {
@@ -45,6 +45,7 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
 
     public int AddItem(string itemName, int quantity, Sprite itemSprite, string itemDescription)
     {
+        
         // Check slot
         if (isFull)
         {
@@ -96,9 +97,9 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
         Debug.Log($"MoveToCraftingSlot called for {itemName} with quantity {quantity}");
         foreach (var craftingSlot in craftingSlots)
         {
-            if (craftingSlot.IsEmpty()) // ºó ½½·Ô¿¡¸¸ Ãß°¡
+            if (craftingSlot.IsEmpty()) // ï¿½ï¿½ ï¿½ï¿½ï¿½Ô¿ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
             {
-                craftingSlot.SetItem(itemName, 1, itemSprite); // Á¦ÀÛÄ­¿¡ ¼ö·® 1°³ ÀÌµ¿
+                craftingSlot.SetItem(itemName, 1, itemSprite); // ï¿½ï¿½ï¿½ï¿½Ä­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 1ï¿½ï¿½ ï¿½Ìµï¿½
                 quantity -= 1;
 
                 if (quantity <= 0)
@@ -122,7 +123,7 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
         itemSprite = null;
         isFull = false;
 
-        // UI ÃÊ±âÈ­
+        // UI ï¿½Ê±ï¿½È­
         itemImage.sprite = null;
         itemImage.enabled = false;
         quantityText.text = "";
@@ -131,6 +132,6 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
 
     public void OnRightClick()
     {
-        // ¿ìÅ¬¸¯ µ¿ÀÛ ÇÏ´Ù ¾ÈµÊ...
+        // ï¿½ï¿½Å¬ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½Èµï¿½...
     }
 }
