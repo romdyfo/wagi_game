@@ -25,8 +25,7 @@ public class ProximityToPlayerClick2D : MonoBehaviour
     private InventoryManager inventoryManager;
 
     private Text messageText;
-    //private float messageDisplayTime = 2f;
-    private float messageDisplayEndTime; // 메시지가 사라질 시간
+    private float messageDisplayTime = 2f;
 
     private Coroutine currentMessageCoroutine;
 
@@ -70,18 +69,6 @@ public class ProximityToPlayerClick2D : MonoBehaviour
         {
             CheckPlayerProximityAndClick();
         }
-
-        if (messageText.gameObject.activeSelf && messageText.text != "")
-        {
-            //Debug.Log($"Checking time: Time.time = {Time.time}, messageDisplayEndTime = {messageDisplayEndTime}");
-
-            if (Time.time >= t + 4)
-            {
-                // 메시지 숨기기
-                Debug.Log("Message should hide now!");
-                HideMessage();
-            }
-        }
     }
 
     void CheckPlayerProximityAndClick()
@@ -123,27 +110,36 @@ public class ProximityToPlayerClick2D : MonoBehaviour
     {
         return $"{itemName}을 획득했습니다.";
     }
-    float t;
+
     private void ShowMessage(string message)
     {
         if (messageText != null)
         {
-            messageText.gameObject.SetActive(true);
+            if (currentMessageCoroutine != null)
+            {
+                StopCoroutine(currentMessageCoroutine);
+            }
+
             messageText.text = message;
+            messageText.gameObject.SetActive(true);
 
-            //t = Time.time;
-
-            Debug.Log("message shown");
+            currentMessageCoroutine = StartCoroutine(HideMessageAfterDelay());
         }
     }
 
-    private void HideMessage()
+    private IEnumerator HideMessageAfterDelay()
     {
+
+        yield return new WaitForSeconds(messageDisplayTime);
+
+
+
         if (messageText != null)
         {
             messageText.text = "";
             messageText.gameObject.SetActive(false);
         }
+
+        currentMessageCoroutine = null;
     }
 }
-
