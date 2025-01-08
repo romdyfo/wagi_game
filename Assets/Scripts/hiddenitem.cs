@@ -133,7 +133,7 @@ public class ProximityToPlayerClick2D : MonoBehaviour
         yield return new WaitForSeconds(messageDisplayTime);
 
 
-        
+
         if (messageText != null)
         {
             messageText.text = "";
