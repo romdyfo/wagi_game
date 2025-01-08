@@ -7,15 +7,20 @@ using UnityEngine.UI;
 public class InventoryManager : MonoBehaviour
 {
     public GameObject InventoryMenu;
+    
     private bool menuActivated;
     public ItemSlot[] itemSlot;
+    
+    private Message message;
 
     private Text messageText;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        GameObject messageObject = GameObject.Find("MessageCanvas");
+        message = messageObject.GetComponent<Message>();
+        
     }
 
     // Update is called once per frame
@@ -37,12 +42,19 @@ public class InventoryManager : MonoBehaviour
 
     public int AddItem(string itemName, int quantity, Sprite itemSprite, string itemDescription)
     {
+        
 
         for (int i = 0; i < itemSlot.Length; i++)
         {
             if ((itemSlot[i].isFull == false && itemSlot[i].itemName == itemName) || itemSlot[i].quantity == 0)
             {
+                
                 int leftOverItems = itemSlot[i].AddItem(itemName, quantity, itemSprite, itemDescription);
+                if (message != null)
+                {
+                    int messageLeftOver = message.AddItem(itemName, quantity, itemSprite, itemDescription);
+                    Debug.Log($"Message script processed {messageLeftOver} leftover items.");
+                }
                 if (leftOverItems > 0)
                 {
                     leftOverItems = AddItem(itemName, leftOverItems, itemSprite, itemDescription);
@@ -70,15 +82,15 @@ public class InventoryManager : MonoBehaviour
 
         foreach (var slot in itemSlot)
         {
-            if (slot.itemName == "³ëÆ®" && slot.quantity > 0)
+            if (slot.itemName == "ï¿½ï¿½Æ®" && slot.quantity > 0)
             {
                 hasItem1 = true;
             }
-            if (slot.itemName == "¿¬ÇÊ" && slot.quantity > 0)
+            if (slot.itemName == "ï¿½ï¿½ï¿½ï¿½" && slot.quantity > 0)
             {
                 hasItem2 = true;
             }
-            if (slot.itemName == "¾Ë¾à" && slot.quantity > 0)
+            if (slot.itemName == "ï¿½Ë¾ï¿½" && slot.quantity > 0)
             {
                 hasItem3 = true;
             }
@@ -116,7 +128,7 @@ public class InventoryManager : MonoBehaviour
             }
         }
 
-        Debug.LogWarning("¹°¾àÀÌ ¾ø½À´Ï´Ù!");
+        Debug.LogWarning("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½!");
         return false;
     }
 
