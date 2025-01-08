@@ -39,7 +39,6 @@ public class InventoryManager : MonoBehaviour
     }
 
 
-
     public int AddItem(string itemName, int quantity, Sprite itemSprite, string itemDescription)
     {
         

@@ -20,12 +20,12 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
     [SerializeField]
     private CraftingSlot[] craftingSlots; // 제작칸 배열
 
-    private GameObject paper;
+    //private GameObject paper;
 
     private void Start()
     {
         inventoryManager = GameObject.Find("InventoryCanvas").GetComponent<InventoryManager>();
-         paper = GameObject.Find("Paper");
+        //paper = GameObject.Find("Paper");
 
     }
 
@@ -105,15 +105,14 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
             }
             else
             {
-                if (paper.activeSelf)
-                {
-                    paper.SetActive(false);
-                }
-                else
-                {
-                    Debug.Log("이건 노트");
-                    paper.SetActive(true);
-                }
+                //if (paper.activeSelf)
+                //{
+                //    paper.SetActive(false);
+                //}
+                //else
+                //{
+                //    paper.SetActive(true);
+                //}
             }
         }
         if (eventData.button == PointerEventData.InputButton.Right)
@@ -163,21 +162,5 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
     public void OnRightClick()
     {
         // 우클릭 동작 하다 안됨...
-    }
-
-    private void HandlePaperCanvas()
-    {
-        if (paper != null)
-        {
-            if (paper.activeSelf)
-            {
-                paper.SetActive(false);
-            }
-            else
-            {
-                Debug.Log("이건 노트");
-                paper.SetActive(true);
-            }
-        }
     }
 }
