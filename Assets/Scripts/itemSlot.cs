@@ -18,11 +18,36 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
 
     // Crafting Slots
     [SerializeField]
-    private CraftingSlot[] craftingSlots; // ����ĭ �迭
+    private CraftingSlot[] craftingSlots; // 제작칸 배열
+
+    private Image paperObject; // Image 타입으로 선언
+    private TMP_Text MakingProcess; // 편지 형식 텍스트 (TMP_Text)
+
+   /// private string content = "치료제 제조 방법\n재료 1. 장소 : 보건실 - 보건실에 있는 타이레놀을 구하자\n재료 2. 장소 : 교실 - 좀비가 된 학생들을 피해서 수행 평가 종이를 구하자\n재료 3. 장소 : 교무실 - 좀비가 된 선생님들 피해서 과학 선생님 자리에 있는 연필을 구하자\n재료 3가지를 모두 모았다면 과학실로 가서 비커에 옮겨 담으면 제조 성공";/
 
     private void Start()
     {
         inventoryManager = GameObject.Find("InventoryCanvas").GetComponent<InventoryManager>();
+
+        var paperCanvas = GameObject.Find("PaperCanvas");
+        if (paperCanvas != null)
+        {
+            paperObject = paperCanvas.transform.Find("Paper")?.GetComponent<Image>();
+            //MakingProcess = paperCanvas.transform.Find("MakingProcess")?.GetComponent<TMP_Text>(); 
+        }
+
+        if (paperObject == null)
+        {
+            Debug.LogWarning("Paper 오브젝트를 찾을 수 없습니다! 경로를 확인하세요.");
+        }
+        else
+        {
+            Debug.Log("Paper 오브젝트가 성공적으로 연결되었습니다.");
+        }
+        //if (MakingProcess != null)
+        //{
+        //    MakingProcess.text = content; // 텍스트 설정
+        //}
     }
 
     // Item slot
@@ -43,9 +68,20 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
     public GameObject selectedShader;
     public bool thisItemSelected;
 
+    private bool isMaterial(params string[] validNames)
+    {
+        foreach (string validName in validNames)
+        {
+            if (itemName == validName)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public int AddItem(string itemName, int quantity, Sprite itemSprite, string itemDescription)
     {
-        
         // Check slot
         if (isFull)
         {
@@ -84,7 +120,28 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
     {
         if (eventData.button == PointerEventData.InputButton.Left)
         {
-            MoveToCraftingSlot();
+            if (isMaterial("연필", "알약", "수행평가 종이"))
+            {
+                MoveToCraftingSlot();
+            }
+            else
+            {
+                if (paperObject != null)
+                {
+                    // 활성화 상태를 반전
+                    bool isActive = paperObject.gameObject.activeSelf;
+                    paperObject.gameObject.SetActive(!isActive);
+
+                    if (isActive)
+                    {
+                        Debug.Log("Paper 오브젝트가 비활성화되었습니다.");
+                    }
+                    else
+                    {
+                        Debug.Log("Paper 오브젝트가 활성화되었습니다.");
+                    }
+                }
+            }
         }
         if (eventData.button == PointerEventData.InputButton.Right)
         {
@@ -97,9 +154,9 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
         Debug.Log($"MoveToCraftingSlot called for {itemName} with quantity {quantity}");
         foreach (var craftingSlot in craftingSlots)
         {
-            if (craftingSlot.IsEmpty()) // �� ���Կ��� �߰�
+            if (craftingSlot.IsEmpty()) // 빈 슬롯에만 추가
             {
-                craftingSlot.SetItem(itemName, 1, itemSprite); // ����ĭ�� ���� 1�� �̵�
+                craftingSlot.SetItem(itemName, 1, itemSprite); // 제작칸에 수량 1개 이동
                 quantity -= 1;
 
                 if (quantity <= 0)
@@ -123,7 +180,7 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
         itemSprite = null;
         isFull = false;
 
-        // UI �ʱ�ȭ
+        // UI 초기화
         itemImage.sprite = null;
         itemImage.enabled = false;
         quantityText.text = "";
@@ -132,6 +189,6 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
 
     public void OnRightClick()
     {
-        // ��Ŭ�� ���� �ϴ� �ȵ�...
+        // 우클릭 동작 하다 안됨...
     }
 }
