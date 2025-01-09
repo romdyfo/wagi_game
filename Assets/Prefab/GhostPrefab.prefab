@@ -103,6 +103,8 @@ MonoBehaviour:
   player: {fileID: 0}
   speed: 8
   detectionRange: 10
+  gameClearCanvas: {fileID: 0}
+  gameClearMusic: {fileID: 8300000, guid: a6ee66089dc6caa459d3da18e577cf11, type: 3}
 --- !u!50 &3534194020362157254
 Rigidbody2D:
   serializedVersion: 4

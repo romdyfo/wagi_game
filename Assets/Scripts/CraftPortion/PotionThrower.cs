@@ -8,10 +8,18 @@ public class PotionThrower : MonoBehaviour
     private InventoryManager inventoryManager;
     private Moving moving; // 캐릭터 방향 참조
 
+    public AudioClip throwSound; // 포션 투척 소리
+    private AudioSource audioSource; // AudioSource 컴포넌트
+
     void Start()
     {
         inventoryManager = FindObjectOfType<InventoryManager>();
         moving = GetComponent<Moving>();
+
+        // AudioSource 초기화
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
+        audioSource.clip = throwSound; // 투척 소리 연결
     }
 
     void Update()
@@ -31,6 +39,12 @@ public class PotionThrower : MonoBehaviour
             Vector2 throwDirection = GetThrowDirection();
             Rigidbody2D rb = potion.GetComponent<Rigidbody2D>();
             rb.velocity = throwDirection * throwForce;
+
+            // 투척 소리 재생
+            if (audioSource != null && throwSound != null)
+            {
+                audioSource.Play();
+            }
 
             Debug.Log("포션을 던졌습니다!");
         }
@@ -52,5 +66,4 @@ public class PotionThrower : MonoBehaviour
 
         return new Vector2(dirX, dirY).normalized;
     }
-
 }

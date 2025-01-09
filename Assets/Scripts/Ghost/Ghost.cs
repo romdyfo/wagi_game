@@ -8,7 +8,6 @@ public class Ghost : MonoBehaviour
     private Animator animator; // 귀신 애니메이터
     private bool isDying = false; // 귀신이 소멸 중인지 여부
 
-
     void Start()
     {
         GameObject foundPlayer = GameObject.FindGameObjectWithTag("Player");
@@ -25,11 +24,10 @@ public class Ghost : MonoBehaviour
 
     void Update()
     {
-        if (player == null) return;
+        if (player == null || isDying) return;
 
         ChasePlayer();
     }
-
 
     void ChasePlayer()
     {
@@ -73,9 +71,20 @@ public class Ghost : MonoBehaviour
 
         yield return new WaitForSeconds(1.0f);
 
-        Destroy(gameObject);
+        TransformAllZombiesToStudents(); // 모든 좀비를 학생으로 변환
+        Destroy(gameObject); // 귀신 제거
     }
 
+    private void TransformAllZombiesToStudents()
+    {
+        // 현재 씬의 모든 좀비 검색
+        ZombieMove[] zombies = FindObjectsOfType<ZombieMove>();
+        foreach (ZombieMove zombie in zombies)
+        {
+            // 좀비를 학생으로 변환
+            zombie.TransformToStudent();
+        }
 
-
+        Debug.Log("모든 좀비가 학생으로 변환되었습니다!");
+    }
 }
