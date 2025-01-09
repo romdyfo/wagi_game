@@ -24,11 +24,6 @@ public class ProximityToPlayerClick2D : MonoBehaviour
 
     private InventoryManager inventoryManager;
 
-    private Text messageText;
-    private float messageDisplayTime = 2f;
-
-    private Coroutine currentMessageCoroutine;
-
     private GameObject player;
 
     [SerializeField]
@@ -54,12 +49,7 @@ public class ProximityToPlayerClick2D : MonoBehaviour
         }
 
         inventoryManager = GameObject.Find("InventoryCanvas").GetComponent<InventoryManager>();
-        messageText = GameObject.Find("MessageText")?.GetComponent<Text>();
-
-        if (messageText == null)
-        {
-            Debug.LogError("MessageText is not assigned and could not be found in the scene.");
-        }
+        
     }
 
     void Update()
@@ -86,8 +76,6 @@ public class ProximityToPlayerClick2D : MonoBehaviour
         {
             Debug.Log("Player is close enough! Item clicked.");
 
-            string message = GetMessageForItem(itemName);
-            //ShowMessage(message);
 
             int leftOverItems = inventoryManager.AddItem(itemName, quantity, sprite, itemDescription);
             if (leftOverItems <= 0)
@@ -107,40 +95,8 @@ public class ProximityToPlayerClick2D : MonoBehaviour
         }
     }
 
-    private string GetMessageForItem(string itemName)
-    {
-        return $"{itemName}을 획득했습니다.";
-    }
-
-    private void ShowMessage(string message)
-    {
-        if (messageText != null)
-        {
-            if (currentMessageCoroutine != null)
-            {
-                StopCoroutine(currentMessageCoroutine);
-            }
-
-            messageText.text = message;
-            messageText.gameObject.SetActive(true);
-
-            currentMessageCoroutine = StartCoroutine(HideMessageAfterDelay());
-        }
-    }
-
-    private IEnumerator HideMessageAfterDelay()
-    {
-
-        yield return new WaitForSeconds(messageDisplayTime);
 
 
 
-        if (messageText != null)
-        {
-            messageText.text = "";
-            messageText.gameObject.SetActive(false);
-        }
-
-        currentMessageCoroutine = null;
-    }
+    
 }
