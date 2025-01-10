@@ -958,6 +958,7 @@ MonoBehaviour:
   potionQuantity: 3
   ghostPrefab: {fileID: 1355071692870582982, guid: a9924b639635242479d8d6ac9e9d420e, type: 3}
   spawnPoint: {fileID: 513548292}
+  craftingPanel: {fileID: 31565262}
 --- !u!114 &31565265
 MonoBehaviour:
   m_ObjectHideFlags: 0

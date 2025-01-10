@@ -11,6 +11,7 @@ public class CraftingSystem : MonoBehaviour
 
     public GameObject ghostPrefab;
     public Transform spawnPoint;
+    public GameObject craftingPanel; // 제작 패널 (탭)
 
 
     public void OnCraftButtonClicked()
@@ -30,7 +31,19 @@ public class CraftingSystem : MonoBehaviour
         ClearCraftingSlots();
 
         SpawnGhost();
+
+        // 제작 탭 닫기
+        if (craftingPanel != null)
+        {
+            craftingPanel.SetActive(false);
+            Debug.Log("CraftingPanel 비활성화됨.");
+        }
+        else
+        {
+            Debug.LogError("CraftingPanel이 설정되지 않았습니다!");
+        }
     }
+
 
     private void AddPotionToInventory()
     {
