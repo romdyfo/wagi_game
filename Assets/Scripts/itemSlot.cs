@@ -23,8 +23,6 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
     private Image paperObject; // Image 타입으로 선언
     private TMP_Text MakingProcess; // 편지 형식 텍스트 (TMP_Text)
 
-   /// private string content = "치료제 제조 방법\n재료 1. 장소 : 보건실 - 보건실에 있는 타이레놀을 구하자\n재료 2. 장소 : 교실 - 좀비가 된 학생들을 피해서 수행 평가 종이를 구하자\n재료 3. 장소 : 교무실 - 좀비가 된 선생님들 피해서 과학 선생님 자리에 있는 연필을 구하자\n재료 3가지를 모두 모았다면 과학실로 가서 비커에 옮겨 담으면 제조 성공";/
-
     private void Start()
     {
         inventoryManager = GameObject.Find("InventoryCanvas").GetComponent<InventoryManager>();
@@ -33,7 +31,7 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
         if (paperCanvas != null)
         {
             paperObject = paperCanvas.transform.Find("Paper")?.GetComponent<Image>();
-            //MakingProcess = paperCanvas.transform.Find("MakingProcess")?.GetComponent<TMP_Text>(); 
+            MakingProcess = paperCanvas.transform.Find("MakingProcess")?.GetComponent<TMP_Text>(); 
         }
 
         if (paperObject == null)
@@ -44,10 +42,6 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
         {
             Debug.Log("Paper 오브젝트가 성공적으로 연결되었습니다.");
         }
-        //if (MakingProcess != null)
-        //{
-        //    MakingProcess.text = content; // 텍스트 설정
-        //}
     }
 
     // Item slot
@@ -131,6 +125,7 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
                     // 활성화 상태를 반전
                     bool isActive = paperObject.gameObject.activeSelf;
                     paperObject.gameObject.SetActive(!isActive);
+                    MakingProcess.gameObject.SetActive(!isActive);
 
                     if (isActive)
                     {
