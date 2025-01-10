@@ -13,9 +13,9 @@ public class ZombieMove : MonoBehaviour
     private float previousX; // 이전 프레임의 x 좌표
     private float startTime; // 애니메이션 시작 시간
 
-    public Sprite studentSprite; // 이 좀비가 변환될 학생 스프라이트
+    public Sprite studentSprite;
 
-    private bool isStudent = false; // 좀비가 학생으로 변환되었는지 여부
+    private bool isStudent = false;
 
     void Start()
     {
