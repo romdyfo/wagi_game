@@ -1,40 +1,38 @@
 ## 🧟 2024 WAGI Game Project 🧟
 
-[게임명]은 WAGI 2기에서 제작한 게임형 프로젝트이다.
+스쿨워Z는 WAGI 2기에서 제작한 게임형 프로젝트이다.
 
-## 🎯 팀원별 역할
+## 🌟 스쿨워Z 프로젝트 소개
 
-- 김지희:
-- 김예은:
-- 김이안:
-- 김주영:
-- 이서영:
-- 노혜린:
-- 유예은:
+'학교의 마지막 밤'
+이 게임은 학교 괴담을 기반으로 한 공포 게임으로, 미션을 수행해 귀신을 죽이고 좀비로 변한 학생들을 되돌리는 것이 목표!!
 
-## 🌟 [게임명] 프로젝트 소개
+## 🌟 스쿨워Z 프로젝트 시놉시스
 
-과 부활동에서 게임 파트를 맡아 부원들과 함께 게임 제작을 진행한다. 
-위 게임은 공포 탈출 게임이라는 가제를 가지고 시작한다. 
-플레이어는 치료제를 모아야 하는 3가지의 미션을 수행하며 해당 게임을 플레이하게 된다.
+주인공은 야간 자율 학습 중 친구들에게 학교 괴담을 듣게 된다.
+학교에서 죽은 선생님이 귀신이 되어 복수를 위해 좀비를 만든다는 괴담이다.
+괴담을 들은 후 갑자기 의식을 잃고 일어나 보니 친구들은 모두 좀비로 변해 있었다!
+학교를 탈출하고 친구들을 구하기 위해 치료제를 만들어 귀신을 없애야 한다.
+![image](https://github.com/user-attachments/assets/ee4f6c8a-ffba-4571-9faa-62ab6b8706e5)
 
-이 프로젝트는 공포 장르의 게임을 통해 플레이어들에게 긴장감과 몰입감을 제공하고자 시작되었다. 게임은 치료제를 모아 탈출하는 스토리를 기반으로 하며, 이를 통해 플레이어가 도전과 해결 과정을 경험하게 하는 것을 목표로 한다. 부원들과의 협업을 통해 Unity 엔진을 활용하여 게임 제작의 전 과정을 이해한다.
 
-## 🌟 [게임명] 프로젝트 시놉시스
+## 🌟 스쿨워Z 특징 및 주요 기능
 
-사실 우리 학교에는 억울하게 죽은 학생 한 명이 있대. 그 학생이 환생하려면 인간의 영혼을 먹어야 해서 사람을 좀비로 만든다던데?? 다시 원래대로 돌이키려면 그 학생의 노트에 적혀있는 치료제 제조 방법을 찾아야 한대!!
+![image](https://github.com/user-attachments/assets/41f5fda6-f084-458c-9514-d6465023f658)
+![image](https://github.com/user-attachments/assets/2459f306-9f4f-4249-a8fe-9167283297d1)
+![image](https://github.com/user-attachments/assets/ee93d221-4234-4532-bccd-74d8c8f20d9f)
+![image](https://github.com/user-attachments/assets/d2603fe9-37d6-4de5-9320-0adb77062845)
 
-## 🌟 [게임명] 특징 및 주요 기능
-
-- 기능1
-    - 세부설명
-- 기능2
 
 ## 🔧 기술 스택
 
 - 프로그래밍 언어: C#, Shader Language
 - 주요 엔진: Unity Engine
-- 협업: github
+- 협업: github, Notion
+
+
+## 🎮 시연 영상
+[🎮 데모 영상 🎮](https://www.youtube.com/watch?v=uirwXIdAD_k)
 
 <br><br>
 
@@ -47,3 +45,15 @@
 | [이서영 (sterlie8)](https://github.com/sterlie8) | [노혜린 (lynn0325)](https://github.com/lynn0325) | [유예은 (Yeeun102)](https://github.com/Yeeun102) |
 | --- | --- | --- |
 | <img src="https://avatars.githubusercontent.com/u/87429388?v=4" width="200"> | <img src="https://avatars.githubusercontent.com/u/164450625?v=4" width="200"> | <img src="https://avatars.githubusercontent.com/u/164315574?v=4" width="200"> |
+
+
+## 🎯 팀원별 역할
+
+- 김지희: 맵 디자인, 귀신 이벤트 구현
+- 김예은: 아이템 이벤트 구현
+- 김이안: 튜토리얼 구현, 배경음 및 기타 씬 담당
+- 김주영: 좀비 및 하트 이벤트 구현
+- 이서영: 인벤토리 구현
+- 노혜린: 맵 구현
+- 권수정: 맵 구현
+- 유예은: 캐릭터 움직임 구현
